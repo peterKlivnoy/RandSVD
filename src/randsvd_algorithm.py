@@ -1,16 +1,23 @@
 import numpy as np
-from .structured_sketch import srht_operator, slow_gaussian_operator 
+from .structured_sketch import srht_operator, srft_operator, slow_gaussian_operator
+from .sparse_sketching import countsketch_operator, sparse_sign_embedding
 
 def randSVD(A, k, p, q=0, sketch_type='gaussian'):
     """
     Computes the randomized SVD of a matrix A using q power iterations and 
-    a specified sketch_type ('gaussian', 'srht', or 'slow_gaussian').
+    a specified sketch_type.
 
     A is a nxm input matrix; 
     k is the approximation rank; 
     p is the oversampling parameter; 
     q is the number of power iterations (Subspace Iteration).
-    sketch_type is the sketching method ('gaussian', 'srht', or 'slow_gaussian').
+    sketch_type is the sketching method:
+        - 'gaussian': Fast BLAS-optimized O(mnl) [DEFAULT]
+        - 'srht': Subsampled Random Hadamard Transform O(mn log n)
+        - 'srft': Subsampled Random Fourier Transform O(mn log n) [FASTEST for structured]
+        - 'countsketch': Sparse embedding O(ζnl) where ζ is sparsity [BEST for sparse matrices]
+        - 'sparse_sign': Generalized sparse embedding with variable sparsity
+        - 'slow_gaussian': Slow Python loop O(mnl) [for testing only]
     """
     rng = np.random.default_rng(seed=0)
     n, m = A.shape[0], A.shape[1]
@@ -18,17 +25,32 @@ def randSVD(A, k, p, q=0, sketch_type='gaussian'):
 
     # --- STAGE A: Find an orthonormal basis (Sketching) ---
     if sketch_type == 'gaussian':
-        # Fast, compiled O(mn*l)
+        # Fast, compiled O(mn*l) using optimized BLAS
         omega = rng.normal(loc=0, scale=1, size=(m, l))
         Y = A @ omega
     elif sketch_type == 'srht':
-        # Structured, intended O(mn log n)
+        # Structured Hadamard: O(mn log n)
         Y = srht_operator(A, l)
+    elif sketch_type == 'srft':
+        # Structured Fourier: O(mn log n), typically faster than SRHT
+        Y = srft_operator(A, l)
     elif sketch_type == 'slow_gaussian':
         # Inefficient Python loop O(mn*l), used for complexity comparison
         Y = slow_gaussian_operator(A, l)
+    elif sketch_type == 'countsketch':
+        # Sparse embedding: O(ζnl) where ζ is sparsity per column
+        Y = countsketch_operator(A, l)
+    elif sketch_type.startswith('sparse_sign'):
+        # Generalized sparse embedding with variable sparsity
+        # Parse sparsity from sketch_type (e.g., 'sparse_sign_2' means sparsity=2)
+        if '_' in sketch_type and sketch_type.split('_')[-1].isdigit():
+            sparsity = int(sketch_type.split('_')[-1])
+        else:
+            sparsity = 1  # Default to CountSketch
+        Y = sparse_sign_embedding(A, l, sparsity=sparsity)
     else:
-        raise ValueError("Invalid sketch_type. Must be 'gaussian', 'srht', or 'slow_gaussian'.")
+        raise ValueError(f"Invalid sketch_type '{sketch_type}'. Must be 'gaussian', 'srht', "
+                        f"'srft', 'countsketch', 'sparse_sign', or 'slow_gaussian'.")
         
     # --- Subspace Iteration (Power Method) for robustness ---
     for i in range(q):
