@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.4)  4 DEC 2025 21:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.4)  5 DEC 2025 12:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -8,8 +8,8 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
-(/usr/local/texlive/2025/texmf-dist/tex/latex/base/size11.clo
-File: size11.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count196
 \c@section=\count197
@@ -406,85 +406,90 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
 )
-(/usr/local/texlive/2025/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count314
-\lst@gtempboxa=\box56
-\lst@token=\toks35
-\lst@length=\count315
-\lst@currlwidth=\dimen186
-\lst@column=\count316
-\lst@pos=\count317
-\lst@lostspace=\dimen187
-\lst@width=\dimen188
-\lst@newlines=\count318
-\lst@lineno=\count319
-\lst@maxwidth=\dimen189
-
-(/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstpatch.sty
-File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
-)
-(/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
-\c@lstnumber=\count320
-\lst@skipnumbers=\count321
-\lst@framebox=\box57
-)
-(/usr/local/texlive/2025/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2024/09/23 1.10c listings configuration
-))
-Package: listings 2024/09/23 1.10c (Carsten Heinz)
-
 (/usr/local/texlive/2025/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip61
 \bibsep=\skip62
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count322
+\c@NAT@ctr=\count314
 )
-\c@definition=\count323
-\c@theorem=\count324
-\c@remark=\count325
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2025/02/11 v3.2a Micro-typographical refinements (RS)
+\MT@toks=\toks35
+\MT@tempbox=\box56
+\MT@count=\count315
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1087.
+LaTeX Info: Redefining \leftprotrusion on input line 1088.
+\MT@prot@toks=\toks36
+LaTeX Info: Redefining \rightprotrusion on input line 1107.
+LaTeX Info: Redefining \textls on input line 1449.
+\MT@outer@kern=\dimen186
+LaTeX Info: Redefining \microtypecontext on input line 2053.
+LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
+\MT@listname@count=\count316
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2025/02/11 v3.2a Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 944.
+LaTeX Info: Redefining \lslig on input line 944.
+\MT@outer@space=\skip63
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2025/02/11 v3.2a microtype main configuration file (RS)
+)
+LaTeX Info: Redefining \microtypesetup on input line 3065.
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+)
+\c@definition=\count317
+\c@theorem=\count318
+\c@lemma=\count319
+\c@remark=\count320
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count326
-\l__pdf_internal_box=\box58
+\l__color_backend_stack_int=\count321
+\l__pdf_internal_box=\box57
 )
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
 
 (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count327
-\scratchdimen=\dimen190
-\scratchbox=\box59
-\nofMPsegments=\count328
-\nofMParguments=\count329
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count330
-\MPscratchDim=\dimen191
-\MPnumerator=\count331
-\makeMPintoPDFobject=\count332
-\everyMPtoPDFconversion=\toks37
+\scratchcounter=\count322
+\scratchdimen=\dimen187
+\scratchbox=\box58
+\nofMPsegments=\count323
+\nofMParguments=\count324
+\everyMPshowfont=\toks37
+\MPscratchCnt=\count325
+\MPscratchDim=\dimen188
+\MPnumerator=\count326
+\makeMPintoPDFobject=\count327
+\everyMPtoPDFconversion=\toks38
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -494,7 +499,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 47.
+Package hyperref Info: Link coloring OFF on input line 53.
 
 (./main.out) (./main.out)
 \@outlinefile=\write3
@@ -509,23 +514,23 @@ Package hyperref Info: Link coloring OFF on input line 47.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(72.26999pt, 452.9679pt, 72.26999pt)
-* v-part:(T,H,B)=(72.26999pt, 700.50687pt, 72.26999pt)
+* h-part:(L,W,R)=(65.04256pt, 467.42276pt, 65.04256pt)
+* v-part:(T,H,B)=(65.04256pt, 714.96173pt, 65.04256pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=452.9679pt
-* \textheight=700.50687pt
-* \oddsidemargin=0.0pt
-* \evensidemargin=0.0pt
-* \topmargin=-37.0pt
+* \textwidth=467.42276pt
+* \textheight=714.96173pt
+* \oddsidemargin=-7.22743pt
+* \evensidemargin=-7.22743pt
+* \topmargin=-44.22743pt
 * \headheight=12.0pt
 * \headsep=25.0pt
-* \topskip=11.0pt
+* \topskip=10.0pt
 * \footskip=30.0pt
-* \marginparwidth=50.0pt
-* \marginparsep=10.0pt
+* \marginparwidth=57.0pt
+* \marginparsep=11.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -536,19 +541,47 @@ Package hyperref Info: Link coloring OFF on input line 47.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count333
-LaTeX Font Info:    Trying to load font information for U+msa on input line 50.
+LaTeX Info: Redefining \microtypecontext on input line 53.
+Package microtype Info: Applying patch `item' on input line 53.
+Package microtype Info: Applying patch `toc' on input line 53.
+Package microtype Info: Applying patch `eqnum' on input line 53.
+
+Package microtype Warning: Unable to apply patch `footnote' on input line 53.
+
+Package microtype Info: Applying patch `verbatim' on input line 53.
+LaTeX Info: Redefining \microtypesetup on input line 53.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 53.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 56.
+
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 50.
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 56.
 
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) (./main.toc
 
 [1
@@ -562,86 +595,173 @@ al/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}])
 
 [2]
 
-[3{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-}]
+[3]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 121.
+put line 109.
 
 
 [4]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+! LaTeX Error: Environment bsmallmatrix undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.139 ... [1]$ and $H_{2^k} = \begin{bsmallmatrix}
+                                                   H_{2^{k-1}} & H_{2^{k-1}}...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Misplaced alignment tab character &.
+l.139 ...2^k} = \begin{bsmallmatrix} H_{2^{k-1}} &
+                                                   H_{2^{k-1}} \\ H_{2^{k-1}...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.139 ..._{2^{k-1}} & H_{2^{k-1}} \\ H_{2^{k-1}} &
+                                                   -H_{2^{k-1}} \end{bsmallm...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+
+! LaTeX Error: \begin{document} ended by \end{bsmallmatrix}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.139 ...^{k-1}} & -H_{2^{k-1}} \end{bsmallmatrix}
+                                                  $. The Fast Walsh-Hadamard...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
 
 
 [5]
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
 
 [6]
-
-LaTeX Warning: Reference `fig:speed_optimized' on page 7 undefined on input lin
-e 348.
+Overfull \hbox (13.80898pt too wide) in paragraph at lines 232--233
+[]\T1/cmr/m/n/10 (-20) For dense ma-trix ex-per-i-ments, we use square ma-tri-c
+es with di-men-sions $\OML/cmm/m/it/10 n \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 (-
+20) 512\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (-20) 1024\OML/cmm/m/it/10 ; \OT1/cmr
+/m/n/10 (-20) 2048\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (-20) 4096\OML/cmm/m/it/10
+ ; \OT1/cmr/m/n/10 (-20) 8000\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (-20) 15000\OMS
+/cmsy/m/n/10 g$\T1/cmr/m/n/10 (-20) .
+ []
 
 
 
 [7]
 
-LaTeX Warning: Reference `fig:speed_naive' on page 8 undefined on input line 36
-4.
+LaTeX Warning: Reference `fig:motivation' on page 8 undefined on input line 256
+.
 
+<../figures/fig0_svd_motivation.pdf, id=278, 860.07492pt x 245.33418pt>
+File: ../figures/fig0_svd_motivation.pdf Graphic file (type pdf)
+<use ../figures/fig0_svd_motivation.pdf>
+Package pdftex.def Info: ../figures/fig0_svd_motivation.pdf  used on input line
+ 260.
+(pdftex.def)             Requested size: 467.42276pt x 133.33199pt.
 
-LaTeX Warning: Reference `fig:speed_sparse' on page 8 undefined on input line 3
-78.
-
-
-LaTeX Warning: Reference `fig:accuracy_methods' on page 8 undefined on input li
-ne 397.
-
-
-LaTeX Warning: Reference `fig:accuracy_power' on page 8 undefined on input line
- 403.
-
-
-LaTeX Warning: Reference `fig:accuracy_oversample' on page 8 undefined on input
- line 415.
+LaTeX Warning: Reference `fig:motivation' on page 8 undefined on input line 269
+.
 
 
 
-[8]
+[8 <../figures/fig0_svd_motivation.pdf>]
 
-LaTeX Warning: Reference `fig:accuracy_sparse' on page 9 undefined on input lin
-e 421.
+LaTeX Warning: Reference `fig:dense' on page 9 undefined on input line 283.
 
+<../figures/fig1_speed_dense.pdf, id=345, 1002.88373pt x 315.23473pt>
+File: ../figures/fig1_speed_dense.pdf Graphic file (type pdf)
+<use ../figures/fig1_speed_dense.pdf>
+Package pdftex.def Info: ../figures/fig1_speed_dense.pdf  used on input line 28
+7.
+(pdftex.def)             Requested size: 467.42276pt x 146.92413pt.
 
-Overfull \hbox (11.54741pt too wide) in paragraph at lines 438--439
-[]\T1/cmr/bx/n/10.95 Algorithmic wins are real: \T1/cmr/m/n/10.95 Pure-Python c
-om-par-isons con-firm the $\OMS/cmsy/m/n/10.95 O\OT1/cmr/m/n/10.95 (\OML/cmm/m/
-it/10.95 mn`\OT1/cmr/m/n/10.95 )$ \T1/cmr/m/n/10.95 vs. $\OMS/cmsy/m/n/10.95 O\
-OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 mn [] n\OT1/cmr/m/n/10.95 )$
- []
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 463.
+LaTeX Warning: Reference `fig:dense' on page 9 undefined on input line 298.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\log' on input line 463.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 463.
-
-
-Overfull \hbox (6.23186pt too wide) in paragraph at lines 476--477
-[]\T1/cmr/bx/n/10.95 Algorithmic com-plex-ity mat-ters, but so do con-stants: \
-T1/cmr/m/n/10.95 Struc-tured sketches (SRFT/S-
- []
+LaTeX Warning: Reference `fig:dense' on page 9 undefined on input line 304.
 
 
 
-[9]
+[9 <../figures/fig1_speed_dense.pdf>]
 
-[10] (./main.aux)
+LaTeX Warning: Reference `fig:sparse' on page 10 undefined on input line 318.
+
+<../figures/fig2_speed_sparse.pdf, id=464, 1002.88373pt x 314.7745pt>
+File: ../figures/fig2_speed_sparse.pdf Graphic file (type pdf)
+<use ../figures/fig2_speed_sparse.pdf>
+Package pdftex.def Info: ../figures/fig2_speed_sparse.pdf  used on input line 3
+22.
+(pdftex.def)             Requested size: 467.42276pt x 146.70964pt.
+
+
+[10 <../figures/fig2_speed_sparse.pdf>]
+
+LaTeX Warning: Reference `fig:accuracy' on page 11 undefined on input line 353.
+
+
+<../figures/fig3_accuracy.pdf, id=571, 1002.40121pt x 315.03546pt>
+File: ../figures/fig3_accuracy.pdf Graphic file (type pdf)
+<use ../figures/fig3_accuracy.pdf>
+Package pdftex.def Info: ../figures/fig3_accuracy.pdf  used on input line 357.
+(pdftex.def)             Requested size: 467.42276pt x 146.90337pt.
+
+LaTeX Warning: Reference `fig:accuracy' on page 11 undefined on input line 366.
+
+
+
+LaTeX Warning: Reference `thm:expected' on page 11 undefined on input line 368.
+
+
+
+
+[11 <../figures/fig3_accuracy.pdf>]
+
+LaTeX Warning: Reference `fig:accuracy' on page 12 undefined on input line 374.
+
+
+
+LaTeX Warning: Reference `fig:summary' on page 12 undefined on input line 386.
+
+<../figures/fig4_summary.pdf, id=689, 845.38332pt x 634.7872pt>
+File: ../figures/fig4_summary.pdf Graphic file (type pdf)
+<use ../figures/fig4_summary.pdf>
+Package pdftex.def Info: ../figures/fig4_summary.pdf  used on input line 390.
+(pdftex.def)             Requested size: 467.42276pt x 350.98409pt.
+
+
+[12]
+
+[13 <../figures/fig4_summary.pdf>]
+
+[14] (./main.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -653,45 +773,99 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 1779EA07E056D03C21538C7937153B23;6337.
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 1779EA07E056D03C21538C7937153B23;6337
+(rerunfilecheck)             After:  2AD2AE267B50A4ADDCE3B7DDBCC6DE59;6332.
  ) 
 Here is how much of TeX's memory you used:
- 15302 strings out of 473190
- 233671 string characters out of 5715800
- 652654 words of memory out of 5000000
- 38266 multiletter control sequences out of 15000+600000
- 577623 words of font info for 84 fonts, out of 8000000 for 9000
+ 15907 strings out of 473190
+ 251185 string characters out of 5715800
+ 689333 words of memory out of 5000000
+ 38656 multiletter control sequences out of 15000+600000
+ 582057 words of font info for 189 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,10n,79p,1278b,1072s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
-></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
-/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
-sr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
-/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
-ocal/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loca
-l/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local
-/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/t
-exlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/loc
-al/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr
-/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/l
-ocal/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/loc
-al/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local
-/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/t
-exlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/tex
-live/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texli
-ve/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive
-/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2
-025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/202
-5/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2025/
-texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2025/te
-xmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2025/texm
-f-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on main.pdf (10 pages, 432718 bytes).
+ 75i,10n,79p,1798b,466s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{table.caption.2} has been referenced but does not e
+xist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.6.4} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.6.3} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.5.3} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.5.2} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.5.1} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.3.3} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsubsection.2.2.4} has been referenced but does n
+ot exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsubsection.2.2.3} has been referenced but does n
+ot exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsubsection.2.2.2} has been referenced but does n
+ot exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsubsection.2.2.1} has been referenced but does n
+ot exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.1.3} has been referenced but does not ex
+ist, replaced by a fixed one
+
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
+/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></us
+r/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
+local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/lo
+cal/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
+l/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/t
+exlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
+ive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive
+/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
+2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/20
+25/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2025
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2025/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/20
+25/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2025
+/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2025/t
+exmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2025/tex
+mf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2025/texmf
+-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-d
+ist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2025/texmf-dis
+t/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/
+fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/fo
+nts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2025/texmf-dist/font
+s/type1/public/cm-super/sftt1000.pfb>
+Output written on main.pdf (14 pages, 579018 bytes).
 PDF statistics:
- 449 PDF objects out of 1000 (max. 8388607)
- 382 compressed objects within 4 object streams
- 97 named destinations out of 1000 (max. 500000)
- 289 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 966 PDF objects out of 1000 (max. 8388607)
+ 451 compressed objects within 5 object streams
+ 85 named destinations out of 1000 (max. 500000)
+ 37690 words of extra memory for PDF output out of 42996 (max. 10000000)
 
