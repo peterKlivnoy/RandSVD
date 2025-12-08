@@ -1,6 +1,7 @@
 import numpy as np
 import math
-
+from scipy.sparse import issparse
+from scipy.sparse import issparse
 # --- FAST FWHT LIBRARY INTEGRATION ---
 fastwht_func = None
 FAST_FWHT_AVAILABLE = False
@@ -69,7 +70,7 @@ def srft_operator(A, l):
     Returns:
         Y: Sketched matrix of shape (m, l)
     """
-    from scipy.sparse import issparse
+    
     
     m, n = A.shape
     rng = np.random.default_rng(seed=0)
@@ -110,6 +111,25 @@ def srft_operator(A, l):
     
     return Y
 
+def gaussian_operator(A, l):
+    """
+    Applies Gaussian sketching to matrix A using optimized BLAS routines.
+    Computes Y = A @ omega where omega is a Gaussian random matrix.
+    
+    Args:
+        A: Input matrix of shape (m, n)
+        l: Sketch size (number of columns in output)
+    
+    Returns:
+        Y: Sketched matrix of shape (m, l)
+    """
+    m, n = A.shape
+    rng = np.random.default_rng(seed=0)
+    omega = rng.normal(loc=0, scale=1, size=(n, l)) 
+    
+    Y = A @ omega
+    
+    return Y
 # --- SRHT Operator (Final Version for Maximum Speed) ---
 def srht_operator(A, l):
     """
@@ -123,7 +143,7 @@ def srht_operator(A, l):
     Returns:
         Y: Sketched matrix of shape (m, l)
     """
-    from scipy.sparse import issparse
+
     
     m, n = A.shape
     rng = np.random.default_rng(seed=0)
@@ -133,10 +153,10 @@ def srht_operator(A, l):
         A = A.toarray()
     
     # 1. Padding Logic
-    if n > 0:
-        n_padded = 1 << (n - 1).bit_length()
-    else:
-        n_padded = 1
+    # if n > 0:
+    #     n_padded = 1 << (n - 1).bit_length()
+    # else:
+    #     n_padded = 1
     
     A_tilde = A
     if n_padded != n:
@@ -144,7 +164,7 @@ def srht_operator(A, l):
         A_tilde = np.pad(A, ((0, 0), (0, n_padded - n)), constant_values=0)
 
     # 2. D: Random Sign Matrix (Scrambling)
-    signs = rng.choice([-1, 1], size=n_padded)
+    signs = rng.choice([-1, 1], size=n)
     A_scrambled = A_tilde * signs 
     
     # 3. H: Walsh-Hadamard Transform (Mixing) - THE CRITICAL STEP
@@ -161,10 +181,12 @@ def srht_operator(A, l):
         fastwht_func_2d(A_scrambled_T)  # In-place modification
         
         # Transpose back and normalize
-        Y_mixed = A_scrambled_T.T / np.sqrt(n_padded)
+        Y_mixed = A_scrambled_T.T / np.sqrt(n)
         
     else:
         # FALLBACK PATH: Pure NumPy FWHT (correct but slower)
+        print("WARNING: Using slow NumPy FWHT fallback. Install a fast FWHT library for better performance.")
+        
         def fwht_pure_numpy(a):
             """Fast Walsh-Hadamard Transform (unnormalized)"""
             h = 1
@@ -183,17 +205,17 @@ def srht_operator(A, l):
         # Apply FWHT to each row and normalize
         Y_mixed = np.zeros_like(A_scrambled)
         for i in range(m):
-            Y_mixed[i, :] = fwht_pure_numpy(A_scrambled[i, :]) / np.sqrt(n_padded)
+            Y_mixed[i, :] = fwht_pure_numpy(A_scrambled[i, :]) / np.sqrt(n)
 
     # 4. P: Subsampling (Randomly selecting l columns)
-    sampling_indices = rng.choice(n_padded, size=l, replace=False)
+    sampling_indices = rng.choice(n, size=l, replace=False)
     Y_sampled = Y_mixed[:, sampling_indices]
     
     # 5. Final scaling: multiply by sqrt(n_padded/l) to match SRHT theory
     # The SRHT operator is Ω = sqrt(n/l) * P * H * D
     # We've already divided by sqrt(n_padded) in the H step,
     # so we need to multiply by sqrt(n_padded/l) here
-    scaling_factor = np.sqrt(n_padded / l)
+    scaling_factor = np.sqrt(n / l)
     Y = Y_sampled * scaling_factor
     
     return Y

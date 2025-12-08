@@ -1,0 +1,16 @@
+{
+  "results": {
+    "exponential": 1.072010812014861,
+    "polynomial": 1.362675468985637,
+    "slow": 1.1777391166521176
+  },
+  "n": 1024,
+  "k": 50,
+  "p": 20,
+  "q": 0,
+  "decay_types": [
+    "exponential",
+    "polynomial",
+    "slow"
+  ]
+}

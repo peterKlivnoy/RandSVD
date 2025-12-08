@@ -44,7 +44,7 @@
 % DOCUMENT INFO
 % ============================================================================
 \title{\Large\textbf{Randomized SVD: Theory, Implementation, and Empirical Analysis of Sketching Methods}}
-\author{Peter Klivnoy}
+\author{Peter Klivnoy and Egil Rolstad}
 \date{December 2025}
 
 % ============================================================================
@@ -378,7 +378,144 @@ The theoretical analysis explains this behavior. The factor $(1 + k/(p-1))$ in t
 Based on our experiments, we recommend $p = 10$ as a robust default that provides a good balance between accuracy and computational cost. Smaller values risk occasional accuracy degradation, while larger values provide minimal benefit.
 
 % ============================================================================
-% SECTION 9: COMPREHENSIVE SUMMARY
+% SECTION 9: ROBUSTNESS TO PERTURBATIONS
+% ============================================================================
+\section{Robustness to Data Perturbations}
+\label{sec:robustness}
+
+Real-world data is rarely pristine. Measurements contain noise, sensors fail producing missing entries, and anomalous events create outliers. Understanding how randomized SVD behaves under such perturbations is essential for practical deployment. This section investigates three types of data corruption: additive Gaussian noise, missing entries (the matrix completion scenario), and sparse outliers.
+
+\subsection{Experimental Setup}
+
+We construct a $1000 \times 1000$ matrix with true rank 50 and exponentially decaying singular values, normalized to have unit Frobenius norm. This clean matrix $A_{\text{clean}}$ serves as ground truth. We then apply various perturbations and measure how well randomized SVD recovers the original low-rank structure.
+
+The key metric is the reconstruction error relative to $A_{\text{clean}}$: we compute the rank-$k$ approximation from the perturbed data and measure $\|A_{\text{clean}} - \tilde{A}_k\|_F / \|A_{\text{clean}}\|_F$. This captures how well the algorithm recovers the true underlying structure despite corruption.
+
+\subsection{Additive Gaussian Noise}
+
+Figure~\ref{fig:robustness}(a) shows how randomized SVD degrades under additive Gaussian noise of varying magnitude. The noise is scaled relative to the matrix Frobenius norm: a noise level of 0.1 means $\|E\|_F = 0.1 \|A\|_F$ where $E$ is the noise matrix.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{../figures/fig5_robustness.pdf}
+\caption{Robustness analysis. Panel (a) shows reconstruction error versus noise level for different numbers of power iterations, revealing that high $q$ can hurt at high noise. Panel (b) shows graceful degradation with missing entries. Panel (c) demonstrates vulnerability to outliers---even 1\% corrupted entries significantly impact accuracy.}
+\label{fig:robustness}
+\end{figure}
+
+The results reveal a subtle interaction between noise and power iterations. At low noise levels (below 5\%), power iterations significantly improve accuracy by sharpening the spectral gap, as expected from theory. However, at high noise levels (above 20\%), using $q = 0$ actually outperforms $q = 2$. This occurs because power iterations amplify whatever structure is present in the data---including noise. When noise dominates, the algorithm begins to fit the noise rather than the signal, and additional power iterations exacerbate this overfitting.
+
+The practical implication is that the optimal number of power iterations depends on the signal-to-noise ratio. For clean data or low noise, $q = 1$ or $q = 2$ is appropriate. For heavily corrupted data, reducing $q$ to 0 or 1 may be preferable. In the absence of prior knowledge about noise levels, $q = 1$ provides a reasonable compromise.
+
+\subsection{Missing Entries}
+
+Figure~\ref{fig:robustness}(b) examines the matrix completion scenario where random entries are missing (set to zero). This models situations such as incomplete surveys, sensor failures, or recommendation systems where users have not rated all items.
+
+All sketching methods degrade gracefully as the fraction of missing entries increases. With 30\% missing data, the reconstruction error approximately doubles compared to complete data. With 50\% missing, the error increases by roughly a factor of 3--4. Beyond 60\% missing, reconstruction becomes unreliable.
+
+Importantly, no sketching method shows significantly better robustness than the others. Gaussian, SRFT, and SRHT all follow nearly identical degradation curves. This suggests that robustness to missing data is determined by the fundamental information-theoretic limits of the problem rather than the choice of sketching matrix.
+
+It is worth noting that standard randomized SVD is not designed for matrix completion. Specialized algorithms such as nuclear norm minimization or alternating least squares explicitly handle missing entries by optimizing only over observed values. Our results show that naive application of randomized SVD to incomplete data produces reasonable results up to moderate missing fractions, but should not be expected to match dedicated matrix completion methods.
+
+\subsection{Sparse Outliers}
+
+Figure~\ref{fig:robustness}(c) reveals a critical vulnerability: standard randomized SVD is highly sensitive to outliers. We corrupt a small fraction of matrix entries by adding large values (10 times the typical entry magnitude). Even with only 1\% of entries corrupted, the reconstruction error increases substantially. At 5\% corruption, the approximation essentially fails to recover the true low-rank structure.
+
+This sensitivity arises because SVD minimizes squared error, which heavily penalizes large deviations. A single outlier with magnitude $M$ contributes $M^2$ to the Frobenius norm, potentially dominating the contribution from thousands of normal entries. The randomized sketching step does not mitigate this---outliers in $A$ propagate directly to the sketch $Y = A\Omega$.
+
+This finding has important practical implications. For data that may contain outliers, preprocessing is essential. Options include:
+\begin{itemize}
+\item \textbf{Robust preprocessing:} Winsorization, median filtering, or outlier detection before applying randomized SVD.
+\item \textbf{Robust PCA methods:} Algorithms specifically designed for outlier-contaminated data, such as Principal Component Pursuit (which decomposes $A = L + S$ into low-rank and sparse components) or median-based PCA.
+\item \textbf{Iterative reweighting:} Alternating between SVD computation and downweighting entries with large residuals.
+\end{itemize}
+
+The choice depends on whether outliers should be removed entirely or modeled separately. For our experiments, standard randomized SVD should be considered inappropriate for outlier-contaminated data without additional safeguards.
+
+% ============================================================================
+% SECTION 10: BLOCK KRYLOV METHODS
+% ============================================================================
+\section{Advanced Iterative Methods: Block Krylov}
+\label{sec:krylov}
+
+The power iteration scheme in Algorithm~\ref{alg:randsvd} forms $Y = (AA^T)^q A\Omega$ by repeatedly applying $AA^T$ and retaining only the final result. Block Krylov methods take a different approach: they retain the entire sequence of intermediate results, building a richer subspace that captures more spectral information per matrix-vector product.
+
+\subsection{The Block Krylov Subspace}
+
+Given a starting block $\Omega \in \R^{n \times \ell}$, the block Krylov subspace of order $q$ is
+\begin{equation}
+\mathcal{K}_q(A^TA, \Omega) = \text{span}\{\Omega, A^TA\Omega, (A^TA)^2\Omega, \ldots, (A^TA)^q\Omega\}.
+\end{equation}
+This subspace has dimension at most $\ell(q+1)$ and contains information about how $A^TA$ acts on vectors at multiple ``time scales.'' The key insight from \citet{musco2015randomized} is that projecting $A$ onto a basis for $\mathcal{K}_q(A^TA, \Omega)$ yields better singular value estimates than projecting onto just the final power iteration result.
+
+Algorithm~\ref{alg:krylov} presents our implementation. The main difference from standard power iteration is that all intermediate matrices are retained and concatenated before orthogonalization.
+
+\begin{algorithm}[t]
+\caption{Block Krylov SVD}
+\label{alg:krylov}
+\begin{algorithmic}[1]
+\Require Matrix $A \in \R^{m \times n}$, target rank $k$, block size $\ell$, Krylov depth $q$
+\Ensure Approximate rank-$k$ SVD: $\tilde{U}, \tilde{\Sigma}, \tilde{V}$
+\State Draw random starting block $\Omega \in \R^{n \times \ell}$
+\State Initialize $K_0 = \Omega$
+\For{$j = 1, \ldots, q$}
+    \State $K_j = A^T(AK_{j-1})$ \Comment{Apply $A^TA$}
+\EndFor
+\State Concatenate: $K = [K_0 \mid K_1 \mid \cdots \mid K_q] \in \R^{n \times \ell(q+1)}$
+\State Orthogonalize: $Q_K = \text{orth}(K)$
+\State Project: $B = AQ_K$
+\State Compute SVD: $B = U_B \Sigma V_B^T$
+\State Recover right singular vectors: $\tilde{V}^T = V_B^T Q_K^T$
+\State \Return $U_B(:,1{:}k), \Sigma(1{:}k,1{:}k), \tilde{V}^T(1{:}k,:)$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Comparison with Simultaneous Iteration}
+
+\citet{musco2015randomized} argue that the standard Frobenius norm metric is ``weak''---both methods perform well on it. They introduce stronger metrics that reveal block Krylov's true advantages:
+\begin{itemize}
+\item \textbf{Frobenius Error (weak):} $\|A - ZZ^TA\|_F / \|A - A_k\|_F - 1$
+\item \textbf{Spectral Error (strong):} $\|A - ZZ^TA\|_2 / \|A - A_k\|_2 - 1$
+\item \textbf{Per-Vector Error (strongest):} $\max_i |\sigma_i^2 - \|A^Tz_i\|^2| / \sigma_{k+1}^2$
+\end{itemize}
+The per-vector metric ensures each approximate singular vector captures the correct amount of variance---critical for PCA applications where individual components matter.
+
+\subsection{Experimental Comparison}
+
+Figure~\ref{fig:krylov} compares block Krylov against simultaneous iteration (standard power method) using all three metrics on matrices with polynomial singular value decay $\sigma_i = 1/i^p$ for $p \in \{0.5, 1.0, 2.0\}$. Smaller decay rates create heavier tails with smaller spectral gaps, challenging traditional methods.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{../figures/fig6_krylov.pdf}
+\caption{Comparison of simultaneous iteration vs block Krylov using the three metrics from \citet{musco2015randomized}. Rows show Frobenius (weak), spectral (strong), and per-vector (strongest) errors. Columns show different spectral decay rates (smaller = heavier tail). Block Krylov shows modest improvement on the weak metric but dramatic improvement on the strong metrics, validating the paper's theoretical predictions.}
+\label{fig:krylov}
+\end{figure}
+
+\paragraph{Frobenius error (weak).} Both methods converge quickly and achieve similar performance. By $q = 2$, both reach error below 0.01. This metric cannot distinguish between the methods, confirming that Frobenius error alone is insufficient for evaluation.
+
+\paragraph{Spectral error (strong).} Block Krylov shows clear advantages. At $q = 2$ with moderate decay, simultaneous iteration yields spectral error of approximately 0.1, while block Krylov achieves 0.01---a 10$\times$ improvement. Block Krylov reaches near-optimal accuracy 1--2 iterations earlier.
+
+\paragraph{Per-vector error (strongest).} The difference is dramatic. At $q = 1$ with standard Zipf decay ($p = 1$), simultaneous iteration gives per-vector error of 170, while block Krylov achieves 0.2---an 850$\times$ improvement. This means block Krylov captures the variance of each individual singular vector far more accurately, which is essential for PCA quality.
+
+\paragraph{Gap independence.} The key theoretical advantage of block Krylov is \emph{gap-independent} convergence. Simultaneous iteration requires $\BigO(1/\epsilon)$ iterations and slows significantly when singular values are closely spaced. Block Krylov requires only $\BigO(1/\sqrt{\epsilon})$ iterations regardless of spectral gaps. Our experiments confirm this: with heavy-tailed spectra (gap ratio 1.025), simultaneous iteration still shows measurable per-vector error at $q = 8$, while block Krylov converges to machine precision by $q = 3$.
+
+\subsection{Computational Considerations}
+
+Block Krylov has overhead compared to simultaneous iteration due to the larger basis that must be orthogonalized: the QR factorization operates on an $m \times k(q+1)$ matrix rather than $m \times k$. However, comparing methods at equal accuracy rather than equal iteration count often favors block Krylov. For slowly decaying spectra, block Krylov at $q = 2$ can outperform simultaneous iteration at $q = 5$ on per-vector accuracy, potentially saving computation despite the orthogonalization overhead.
+
+\subsection{When to Use Block Krylov}
+
+Based on our experiments and the theoretical analysis of \citet{musco2015randomized}, block Krylov methods are most valuable when:
+\begin{itemize}
+\item \textbf{Per-vector accuracy matters:} For PCA applications where each principal component should capture the correct amount of variance.
+\item \textbf{Heavy-tailed data:} Real-world data often has slowly decaying singular values with small gaps---exactly where block Krylov excels.
+\item \textbf{Limited passes over data:} When the number of matrix-vector products is constrained (e.g., streaming or out-of-core settings), block Krylov extracts more information per pass.
+\item \textbf{Spectral norm guarantees needed:} When worst-case approximation quality matters, not just average (Frobenius) error.
+\end{itemize}
+
+For problems where only Frobenius reconstruction error matters, or when simplicity is paramount, standard simultaneous iteration remains excellent. The ``right'' method depends on the metric that matters for your application.
+
+% ============================================================================
+% SECTION 11: COMPREHENSIVE SUMMARY
 % ============================================================================
 \section{Synthesis and Practical Recommendations}
 \label{sec:synthesis}
@@ -419,18 +556,22 @@ For sparse matrices with density below approximately 10\%, CountSketch should be
 Regardless of sketching method, include at least one power iteration ($q = 1$) unless the spectrum is known to decay rapidly. The computational overhead is modest and the accuracy improvement can be substantial. Use oversampling $p = 10$ as a robust default.
 
 % ============================================================================
-% SECTION 10: CONCLUSION
+% SECTION 12: CONCLUSION
 % ============================================================================
 \section{Conclusion}
 \label{sec:conclusion}
 
-This report has provided a comprehensive empirical investigation of randomized SVD with multiple sketching methods. By implementing each method in both optimized and naive forms, we have cleanly separated algorithmic complexity from implementation efficiency, revealing that the theoretical advantages of structured sketches are real but often masked by the excellence of modern BLAS libraries.
+This report has provided a comprehensive empirical investigation of randomized SVD, spanning sketching methods, computational efficiency, approximation accuracy, numerical stability, and advanced iterative techniques. By implementing each method in both optimized and naive forms, we have cleanly separated algorithmic complexity from implementation efficiency, revealing insights that bridge theory and practice.
 
-Our experiments establish several key findings. Randomized SVD achieves near-optimal accuracy with speedups approaching three orders of magnitude for large matrices. The choice of sketching method primarily affects computational cost rather than approximation quality. Structured sketches (SRFT/SRHT) achieve their theoretical complexity advantages when library optimizations are controlled for, but Gaussian sketching remains competitive for practical problem sizes due to BLAS optimization. CountSketch provides dramatic and unambiguous advantages for sparse matrices. Power iterations and oversampling are the primary tools for controlling accuracy.
+\textbf{Core findings on sketching methods.} Randomized SVD achieves near-optimal accuracy with speedups approaching three orders of magnitude for large matrices. The choice of sketching method primarily affects computational cost rather than approximation quality---all methods converge to the same accuracy given sufficient power iterations and oversampling. Structured sketches (SRFT/SRHT) achieve their theoretical $\BigO(mn \log k)$ complexity advantages when library optimizations are controlled for, but Gaussian sketching remains competitive for practical problem sizes due to BLAS optimization. CountSketch provides dramatic and unambiguous advantages for sparse matrices, operating in $\BigO(\text{nnz}(A))$ time.
 
-These findings have immediate practical implications. For most applications with dense matrices of moderate size, Gaussian sketching with a few power iterations provides an excellent balance of simplicity, efficiency, and accuracy. For sparse data or very large dense matrices, specialized methods (CountSketch or SRHT) become worthwhile. The algorithmic parameters $p$ and $q$ should be chosen based on accuracy requirements and knowledge of the spectral decay profile.
+\textbf{Numerical stability considerations.} Our robustness experiments reveal important practical considerations. Randomized SVD exhibits graceful degradation under Gaussian noise and missing data---even with 30--40\% of entries missing, reasonable approximations remain achievable. However, standard randomized SVD is \emph{not} robust to outliers. Even 1\% corruption by large entries causes significant accuracy degradation, as the outlier subspace captures substantial spectral energy. Applications with potential outlier contamination should employ preprocessing or consider robust PCA alternatives that explicitly model sparse corruption.
 
-Several directions remain for future investigation. The theoretical $\BigO(mn \log k)$ complexity for structured sketches requires sophisticated implementation techniques that we have not explored. Block Krylov methods offer potential accuracy improvements beyond simple power iteration. And the extension to streaming and distributed settings presents additional algorithmic challenges.
+\textbf{Advanced iterative methods.} Following \citet{musco2015randomized}, we evaluated block Krylov methods using three metrics of increasing strength: Frobenius norm (weak), spectral norm (strong), and per-vector variance (strongest). Both simultaneous iteration and block Krylov perform similarly on the weak Frobenius metric. However, on the stronger metrics that matter for PCA quality, block Krylov shows dramatic improvements---achieving 850$\times$ better per-vector accuracy at low iteration counts. Crucially, block Krylov convergence is \emph{gap-independent}, making it robust to the heavy-tailed spectra common in real-world data. For applications where individual principal components must capture the correct variance, block Krylov is strongly preferred.
+
+\textbf{Practical recommendations.} For most applications with dense matrices of moderate size, Gaussian sketching with $q = 1$--$2$ power iterations and oversampling $p \approx 10$ provides an excellent balance of simplicity, efficiency, and accuracy. For sparse data, CountSketch is the clear choice. For very large dense matrices where $\BigO(mnk)$ becomes prohibitive, structured sketches (SRHT) offer asymptotic advantages. When per-vector accuracy matters (PCA applications) or spectra are heavy-tailed, block Krylov methods justify their additional complexity. And critically, data should be examined for outlier contamination before applying standard randomized methods.
+
+\textbf{Future directions.} Several avenues remain for investigation. Achieving the full $\BigO(mn \log k)$ complexity for structured sketches requires sophisticated implementation techniques beyond our pure-Python approach. The combination of robustness techniques with randomized methods---particularly robust PCA formulations amenable to sketching---represents an important research direction. And extensions to streaming, distributed, and tensor settings present additional algorithmic challenges with substantial practical import.
 
 All code and experiments are available at \url{https://github.com/peterKlivnoy/RandSVD} for full reproducibility.
 
@@ -489,6 +630,16 @@ A.~K. Saibaba.
 D.~Achlioptas.
 \newblock Database-friendly random projections: Johnson-Lindenstrauss with binary coins.
 \newblock \emph{Journal of Computer and System Sciences}, 66(4):671--687, 2003.
+
+\bibitem[Cand\`{e}s et al.(2011)]{candes2011robust}
+E.~J. Cand\`{e}s, X.~Li, Y.~Ma, and J.~Wright.
+\newblock Robust principal component analysis?
+\newblock \emph{Journal of the ACM}, 58(3):1--37, 2011.
+
+\bibitem[Tropp et al.(2017)]{tropp2017practical}
+J.~A. Tropp, A.~Yurtsever, M.~Udell, and V.~Cevher.
+\newblock Practical sketching algorithms for low-rank matrix approximation.
+\newblock \emph{SIAM Journal on Matrix Analysis and Applications}, 38(4):1454--1485, 2017.
 
 \end{thebibliography}
 

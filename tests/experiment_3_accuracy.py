@@ -256,7 +256,7 @@ def main():
     # ===== Benchmark 1: Error by spectrum type =====
     print("\n[2/4] Benchmarking error by spectrum type...")
     results_spectrum, _ = benchmark_accuracy_vs_spectrum(
-        A_dict, sigma_dict, k, p=20, q=1, methods=methods
+        A_dict, sigma_dict, k, p=20, q=0, methods=methods
     )
     
     # ===== Benchmark 2: Error vs Power Iterations =====

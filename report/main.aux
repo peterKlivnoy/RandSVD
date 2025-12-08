@@ -43,10 +43,10 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Hardware and Software Environment}{8}{subsection.4.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {5}The Fundamental Advantage: RandSVD versus Full SVD}{8}{section.5}\protected@file@percent }
 \newlabel{sec:motivation}{{5}{8}{The Fundamental Advantage: RandSVD versus Full SVD}{section.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Sketching Method Comparison on Dense Matrices}{8}{section.6}\protected@file@percent }
+\newlabel{sec:dense}{{6}{8}{Sketching Method Comparison on Dense Matrices}{section.6}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Speed comparison of sketching methods on dense matrices. Panel (a) shows optimized implementations on a $2048 \times 2048$ matrix, with full SVD time (1496ms) shown as a reference line and complete RandSVD time shown separately. Panel (b) shows naive pure-Python implementations on a smaller $512 \times 512$ matrix, revealing the true algorithmic complexity differences. Panel (c) shows speedup factors of structured methods relative to Gaussian.}}{9}{figure.caption.8}\protected@file@percent }
 \newlabel{fig:dense}{{2}{9}{Speed comparison of sketching methods on dense matrices. Panel (a) shows optimized implementations on a $2048 \times 2048$ matrix, with full SVD time (1496ms) shown as a reference line and complete RandSVD time shown separately. Panel (b) shows naive pure-Python implementations on a smaller $512 \times 512$ matrix, revealing the true algorithmic complexity differences. Panel (c) shows speedup factors of structured methods relative to Gaussian}{figure.caption.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Sketching Method Comparison on Dense Matrices}{9}{section.6}\protected@file@percent }
-\newlabel{sec:dense}{{6}{9}{Sketching Method Comparison on Dense Matrices}{section.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Optimized Implementations}{9}{subsection.6.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Revealing True Complexity: Naive Implementations}{9}{subsection.6.2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Speed comparison on sparse matrices ($4000 \times 4000$). Panel (a) shows absolute timing across density levels. CountSketch time scales linearly with density (number of nonzeros), while Gaussian time remains approximately constant regardless of sparsity. Panel (b) shows the speedup factor achieved by CountSketch, reaching over 100$\times $ at 0.1\% density. Panel (c) confirms that both methods achieve similar approximation accuracy.}}{10}{figure.caption.9}\protected@file@percent }
@@ -63,14 +63,43 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Sketching Method Comparison}{11}{subsection.8.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.2}The Critical Role of Power Iterations}{11}{subsection.8.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Effect of Oversampling}{12}{subsection.8.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9}Synthesis and Practical Recommendations}{12}{section.9}\protected@file@percent }
-\newlabel{sec:synthesis}{{9}{12}{Synthesis and Practical Recommendations}{section.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Summary of Findings}{12}{subsection.9.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Practical Recommendations}{12}{subsection.9.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comprehensive summary. Panel (a) shows time scaling with matrix dimension for different sketching methods. Panel (b) shows the sparse versus dense comparison across density levels. Panel (c) summarizes the accuracy characteristics, confirming that all methods achieve similar quality with appropriate parameter choices.}}{13}{figure.caption.11}\protected@file@percent }
-\newlabel{fig:summary}{{5}{13}{Comprehensive summary. Panel (a) shows time scaling with matrix dimension for different sketching methods. Panel (b) shows the sparse versus dense comparison across density levels. Panel (c) summarizes the accuracy characteristics, confirming that all methods achieve similar quality with appropriate parameter choices}{figure.caption.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{13}{section.10}\protected@file@percent }
-\newlabel{sec:conclusion}{{10}{13}{Conclusion}{section.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Robustness to Data Perturbations}{12}{section.9}\protected@file@percent }
+\newlabel{sec:robustness}{{9}{12}{Robustness to Data Perturbations}{section.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Experimental Setup}{12}{subsection.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Additive Gaussian Noise}{12}{subsection.9.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Robustness analysis. Panel (a) shows reconstruction error versus noise level for different numbers of power iterations, revealing that high $q$ can hurt at high noise. Panel (b) shows graceful degradation with missing entries. Panel (c) demonstrates vulnerability to outliers---even 1\% corrupted entries significantly impact accuracy.}}{13}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:robustness}{{5}{13}{Robustness analysis. Panel (a) shows reconstruction error versus noise level for different numbers of power iterations, revealing that high $q$ can hurt at high noise. Panel (b) shows graceful degradation with missing entries. Panel (c) demonstrates vulnerability to outliers---even 1\% corrupted entries significantly impact accuracy}{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Missing Entries}{13}{subsection.9.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}Sparse Outliers}{13}{subsection.9.4}\protected@file@percent }
+\citation{musco2015randomized}
+\citation{musco2015randomized}
+\citation{musco2015randomized}
+\citation{musco2015randomized}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Block Krylov SVD}}{14}{algorithm.2}\protected@file@percent }
+\newlabel{alg:krylov}{{2}{14}{Block Krylov SVD}{algorithm.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Advanced Iterative Methods: Block Krylov}{14}{section.10}\protected@file@percent }
+\newlabel{sec:krylov}{{10}{14}{Advanced Iterative Methods: Block Krylov}{section.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}The Block Krylov Subspace}{14}{subsection.10.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}Comparison with Simultaneous Iteration}{14}{subsection.10.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.3}Experimental Comparison}{14}{subsection.10.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Comparison of simultaneous iteration vs block Krylov using the three metrics from \citet  {musco2015randomized}. Rows show Frobenius (weak), spectral (strong), and per-vector (strongest) errors. Columns show different spectral decay rates (smaller = heavier tail). Block Krylov shows modest improvement on the weak metric but dramatic improvement on the strong metrics, validating the paper's theoretical predictions.}}{15}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:krylov}{{6}{15}{Comparison of simultaneous iteration vs block Krylov using the three metrics from \citet {musco2015randomized}. Rows show Frobenius (weak), spectral (strong), and per-vector (strongest) errors. Columns show different spectral decay rates (smaller = heavier tail). Block Krylov shows modest improvement on the weak metric but dramatic improvement on the strong metrics, validating the paper's theoretical predictions}{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Frobenius error (weak).}{15}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Spectral error (strong).}{15}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-vector error (strongest).}{15}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gap independence.}{15}{section*.16}\protected@file@percent }
+\citation{musco2015randomized}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.4}Computational Considerations}{16}{subsection.10.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.5}When to Use Block Krylov}{16}{subsection.10.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}Synthesis and Practical Recommendations}{16}{section.11}\protected@file@percent }
+\newlabel{sec:synthesis}{{11}{16}{Synthesis and Practical Recommendations}{section.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.1}Summary of Findings}{16}{subsection.11.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}Practical Recommendations}{16}{subsection.11.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Comprehensive summary. Panel (a) shows time scaling with matrix dimension for different sketching methods. Panel (b) shows the sparse versus dense comparison across density levels. Panel (c) summarizes the accuracy characteristics, confirming that all methods achieve similar quality with appropriate parameter choices.}}{17}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:summary}{{7}{17}{Comprehensive summary. Panel (a) shows time scaling with matrix dimension for different sketching methods. Panel (b) shows the sparse versus dense comparison across density levels. Panel (c) summarizes the accuracy characteristics, confirming that all methods achieve similar quality with appropriate parameter choices}{figure.caption.17}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12}Conclusion}{17}{section.12}\protected@file@percent }
+\newlabel{sec:conclusion}{{12}{17}{Conclusion}{section.12}{}}
+\citation{musco2015randomized}
 \bibstyle{plainnat}
 \bibcite{halko2011finding}{{1}{2011}{{Halko et al.}}{{}}}
 \bibcite{liberty2007randomized}{{2}{2007}{{Liberty et al.}}{{}}}
@@ -82,4 +111,6 @@
 \bibcite{musco2015randomized}{{8}{2015}{{Musco \& Musco}}{{}}}
 \bibcite{saibaba2019randomized}{{9}{2019}{{Saibaba}}{{}}}
 \bibcite{achlioptas2003database}{{10}{2003}{{Achlioptas}}{{}}}
-\gdef \@abspage@last{14}
+\bibcite{candes2011robust}{{11}{2011}{{Cand\`{e}s et al.}}{{}}}
+\bibcite{tropp2017practical}{{12}{2017}{{Tropp et al.}}{{}}}
+\gdef \@abspage@last{19}

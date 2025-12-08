@@ -1,0 +1,35 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}The SVD and Its Importance}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}The Computational Challenge}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}The Randomized SVD Algorithm}{2}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Theory: Error Bounds}{2}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Motivating Experiment: Speed vs Accuracy}{2}{subsection.1.5}%
+\contentsline {section}{\numberline {2}Improving Accuracy Through Iteration}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}The Problem: Spectral Decay Dependence}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Solution 1: Power Iteration (Simultaneous Subspace Iteration)}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Solution 2: Block Krylov Methods}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Experimental Comparison: Synthetic Data}{4}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Experimental Comparison: Real Data (20 Newsgroups)}{4}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Runtime Considerations}{4}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Summary: When to Use What}{5}{subsection.2.7}%
+\contentsline {section}{\numberline {3}Efficient Sketching Methods}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}The Computational Bottleneck}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Structured Random Transforms for Dense Matrices}{6}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Subsampled Randomized Fourier Transform (SRFT)}{7}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Subsampled Randomized Hadamard Transform (SRHT)}{7}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}Experimental Results: Dense Matrices}{8}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Discussion: Theory vs Practice}{8}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Sparse Matrices: CountSketch and Sparse Sign}{9}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Experimental Results: Sparse Matrices}{9}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Speed-Accuracy Tradeoffs: The Pareto Frontier}{9}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Summary: Choosing a Sketching Method}{9}{subsection.3.8}%
+\contentsline {section}{\numberline {4}Application: Video Background Separation}{12}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Problem Setup}{12}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Method}{12}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Results}{12}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Conclusion}{12}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Summary of Contributions}{12}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Practical Recommendations}{12}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Future Directions}{12}{subsection.5.3}%
+\contentsline {section}{\numberline {A}Implementation Details}{12}{appendix.A}%
+\contentsline {section}{\numberline {B}Additional Experiments}{12}{appendix.B}%

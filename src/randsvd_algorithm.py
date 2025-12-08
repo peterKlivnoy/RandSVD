@@ -1,5 +1,5 @@
 import numpy as np
-from .structured_sketch import srht_operator, srft_operator, slow_gaussian_operator
+from .structured_sketch import gaussian_operator, srht_operator, srft_operator, slow_gaussian_operator
 from .sparse_sketching import countsketch_operator, sparse_sign_embedding
 
 
@@ -27,8 +27,7 @@ def randSVD(A, k, p, q=0, sketch_type='gaussian'):
     # --- STAGE A: Find an orthonormal basis (Sketching) ---
     if sketch_type == 'gaussian':
         # Fast, compiled O(mn*l) using optimized BLAS
-        omega = rng.normal(loc=0, scale=1, size=(m, l))
-        Y = A @ omega
+        Y = gaussian_operator(A,l) 
     elif sketch_type == 'srht':
         # Structured Hadamard: O(mn log n)
         Y = srht_operator(A, l)

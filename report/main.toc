@@ -19,7 +19,7 @@
 \contentsline {subsection}{\numberline {4.3}Evaluation Metrics}{7}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}Hardware and Software Environment}{8}{subsection.4.4}%
 \contentsline {section}{\numberline {5}The Fundamental Advantage: RandSVD versus Full SVD}{8}{section.5}%
-\contentsline {section}{\numberline {6}Sketching Method Comparison on Dense Matrices}{9}{section.6}%
+\contentsline {section}{\numberline {6}Sketching Method Comparison on Dense Matrices}{8}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Optimized Implementations}{9}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Revealing True Complexity: Naive Implementations}{9}{subsection.6.2}%
 \contentsline {section}{\numberline {7}Sparse Matrix Experiments: The CountSketch Advantage}{10}{section.7}%
@@ -30,7 +30,22 @@
 \contentsline {subsection}{\numberline {8.1}Sketching Method Comparison}{11}{subsection.8.1}%
 \contentsline {subsection}{\numberline {8.2}The Critical Role of Power Iterations}{11}{subsection.8.2}%
 \contentsline {subsection}{\numberline {8.3}Effect of Oversampling}{12}{subsection.8.3}%
-\contentsline {section}{\numberline {9}Synthesis and Practical Recommendations}{12}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Summary of Findings}{12}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Practical Recommendations}{12}{subsection.9.2}%
-\contentsline {section}{\numberline {10}Conclusion}{13}{section.10}%
+\contentsline {section}{\numberline {9}Robustness to Data Perturbations}{12}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Experimental Setup}{12}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Additive Gaussian Noise}{12}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Missing Entries}{13}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Sparse Outliers}{13}{subsection.9.4}%
+\contentsline {section}{\numberline {10}Advanced Iterative Methods: Block Krylov}{14}{section.10}%
+\contentsline {subsection}{\numberline {10.1}The Block Krylov Subspace}{14}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Comparison with Simultaneous Iteration}{14}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Experimental Comparison}{14}{subsection.10.3}%
+\contentsline {paragraph}{Frobenius error (weak).}{15}{section*.13}%
+\contentsline {paragraph}{Spectral error (strong).}{15}{section*.14}%
+\contentsline {paragraph}{Per-vector error (strongest).}{15}{section*.15}%
+\contentsline {paragraph}{Gap independence.}{15}{section*.16}%
+\contentsline {subsection}{\numberline {10.4}Computational Considerations}{16}{subsection.10.4}%
+\contentsline {subsection}{\numberline {10.5}When to Use Block Krylov}{16}{subsection.10.5}%
+\contentsline {section}{\numberline {11}Synthesis and Practical Recommendations}{16}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Summary of Findings}{16}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Practical Recommendations}{16}{subsection.11.2}%
+\contentsline {section}{\numberline {12}Conclusion}{17}{section.12}%
