@@ -63,18 +63,18 @@ def benchmark_svd_methods(n_values, k, num_trials=3):
     }
     
     p = 10  # Oversampling
-    q = 1   # Power iterations
+    q = 0   # Power iterations
     
     for n in n_values:
         print(f"  Testing n={n}...", end=" ", flush=True)
         
         # Create test matrix with decaying spectrum
         np.random.seed(42)
-        U, _ = np.linalg.qr(np.random.randn(n, n))
+        # U, _ = np.linalg.qr()
         V, _ = np.linalg.qr(np.random.randn(n, n))
         # Polynomial decay spectrum
         singular_values = 1.0 / (np.arange(1, n + 1) ** 1.5)
-        A = U @ np.diag(singular_values) @ V.T
+        A = np.random.randn(n, n)
         
         # Time full SVD (only if feasible)
         full_svd_time = None
@@ -205,11 +205,12 @@ def create_figure(results, k, output_dir):
                label='Optimal (ratio = 1.0)')
     
     ax.set_xlabel('Matrix dimension n')
-    ax.set_ylabel('Error ratio (RandSVD / Optimal)')
+    ax.set_ylabel('Relative Error (RandSVD / Best Rank-k)')
     ax.set_title('(C) Approximation Quality')
     ax.legend(loc='upper right', framealpha=0.9)
     ax.grid(True, alpha=0.3)
-    ax.set_ylim(0.95, max(1.2, np.nanmax(errors) * 1.1))
+    # Cap y-axis to start at 0 and set a lower max (e.g., 1.05 or 1.1)
+    ax.set_ylim(1,np.nanmax(errors) * 1.2)
     
     plt.tight_layout()
     
@@ -232,13 +233,13 @@ def main():
     
     # Test parameters
     # Use large matrices to show the real power of RandSVD
-    n_values = [1000, 2000, 3000, 4000, 5000, 60000, 7000, 8000]
+    n_values = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000]
     k = 50  # We only want top-k singular values/vectors
-    
+    print('Helllooo')
     print(f"Configuration:")
     print(f"  Matrix sizes: {n_values}")
     print(f"  Target rank k = {k}")
-    print(f"  Oversampling p = 10, Power iterations q = 1")
+    print(f"  Oversampling p = 10, Power iterations q = 0")
     print()
     
     print("[1/2] Running benchmarks...")

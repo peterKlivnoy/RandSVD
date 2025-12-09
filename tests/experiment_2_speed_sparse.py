@@ -110,9 +110,9 @@ def create_figure_2(results, m, n, l, sparsity_s, output_dir):
             marker=MARKERS['countsketch'], color=COLORS['countsketch'],
             linewidth=2, markersize=8, label='CountSketch')
     
-    ax.plot(nnz_vals, np.array(results['sparse_sign']) * 1000,
-            marker=MARKERS['sparse_sign'], color=COLORS['sparse_sign'],
-            linewidth=2, markersize=8, label=f'Sparse Sign (s={sparsity_s})')
+    # ax.plot(nnz_vals, np.array(results['sparse_sign']) * 1000,
+    #         marker=MARKERS['sparse_sign'], color=COLORS['sparse_sign'],
+    #         linewidth=2, markersize=8, label=f'Sparse Sign (s={sparsity_s})')
     
     # Theoretical: Gaussian flat - anchor at 80% of mean
     g_flat = np.array(results['gaussian']).mean() * 1000 * 0.8
@@ -126,11 +126,11 @@ def create_figure_2(results, m, n, l, sparsity_s, output_dir):
     ax.plot(nnz_theory, cs_theory, '--', color=COLORS['countsketch'], 
             alpha=0.5, linewidth=1.5, label=r'$O(\mathrm{nnz})$')
     
-    # Theoretical: Sparse Sign linear
-    ss_ref = np.array(results['sparse_sign'])[0] * 1000
-    ss_theory = ss_ref * (nnz_theory / nnz_vals[0]) * 0.8
-    ax.plot(nnz_theory, ss_theory, '--', color=COLORS['sparse_sign'], 
-            alpha=0.5, linewidth=1.5, label=r'$O(s \cdot \mathrm{nnz})$')
+    # # Theoretical: Sparse Sign linear
+    # ss_ref = np.array(results['sparse_sign'])[0] * 1000
+    # ss_theory = ss_ref * (nnz_theory / nnz_vals[0]) * 0.8
+    # ax.plot(nnz_theory, ss_theory, '--', color=COLORS['sparse_sign'], 
+    #         alpha=0.5, linewidth=1.5, label=r'$O(s \cdot \mathrm{nnz})$')
     
     ax.set_xlabel('Number of nonzeros (nnz)')
     ax.set_ylabel('Sketch Time (ms)')
@@ -143,8 +143,7 @@ def create_figure_2(results, m, n, l, sparsity_s, output_dir):
     ax.set_yscale('log')
     
     # Set reasonable y limits - expand upward to give Gaussian breathing room
-    ymin = min(np.array(results['countsketch']).min(), 
-               np.array(results['sparse_sign']).min()) * 1000 * 0.3
+    ymin = np.array(results['countsketch']).min() * 1000 * 0.3
     ymax = np.array(results['gaussian']).max() * 1000 * 4
     ax.set_ylim(ymin, ymax)
     

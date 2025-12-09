@@ -220,7 +220,7 @@ def create_figure_3(results, m, n, k, output_dir, selected_sparsities=None):
                        fontsize=7, color='#0072B2')
     
     ax.set_xlabel('Runtime (ms)')
-    ax.set_ylabel('Relative Error ($\\|A - \\hat{A}\\|_F / \\|A\\|_F$)')
+    ax.set_ylabel('Relative Error')
     ax.set_title(f'Error vs. Runtime: Sparsity-Accuracy Trade-off\n20 Newsgroups: {m} docs × {n} words, rank-{k}', 
                  fontweight='bold')
     
