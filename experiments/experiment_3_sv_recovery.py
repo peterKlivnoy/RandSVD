@@ -361,29 +361,7 @@ def main():
     print("\nCreating easy vs hard comparison plot...")
     fig2 = create_comparison_figure(results_easy, results_hard, output_dir)
     
-    # Summary
-    print("\n" + "=" * 70)
-    print("SUMMARY")
-    print("=" * 70)
-    print("""
-Key Findings from Singular Value Recovery:
-
-1. SPECTRAL BIAS (q=0): The naive method OVERESTIMATES tail singular values.
-   - The random projection captures noise, inflating small singular values
-   - This is visible as the blue line drifting ABOVE the true values
-
-2. POWER ITERATIONS FIX THIS: With q=1 or q=2, the algorithm "snaps" onto
-   the true spectrum. The noise is suppressed by repeated multiplication.
-
-3. BLOCK KRYLOV: Provides similar or better recovery with the same 
-   number of matrix-vector products as power iteration.
-
-4. EASY vs HARD: For fast-decay matrices, q=0 works fine.
-   For slow-decay matrices, iterations are MANDATORY.
-
-This plot shows EXACTLY where the error comes from and why iterations help!
-""")
-
+  
 
 if __name__ == "__main__":
     main()

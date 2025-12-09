@@ -1,30 +1,4 @@
-"""
-Experiment 6: Block Krylov Methods vs Simultaneous Iteration
-============================================================
 
-Based on Musco & Musco (2015) "Randomized Block Krylov Methods for Stronger
-and Faster Approximate Singular Value Decomposition"
-
-KEY INSIGHTS FROM THE PAPER:
-1. Standard Frobenius norm error is a "weak" metric - both methods do well
-2. Spectral norm error is "stronger" - Block Krylov shows advantage
-3. Per-vector error is "strongest" - ensures each singular vector is accurate
-4. Block Krylov converges in O(1/√ε) iterations REGARDLESS of spectral gaps
-5. Simultaneous iteration needs O(1/ε) and depends on gaps
-
-METRICS (from the paper):
-1. Frobenius: ||A - ZZ^T A||_F / ||A - A_k||_F - 1
-2. Spectral:  ||A - ZZ^T A||_2 / ||A - A_k||_2 - 1  
-3. Per-Vector: max_i |u_i^T AA^T u_i - z_i^T AA^T z_i| / σ_{k+1}^2
-
-HYPOTHESIS:
-- Frobenius: Both methods converge fast (nearly identical)
-- Spectral & Per-Vector: Block Krylov converges significantly faster
-
-DATASETS:
-- Synthetic: Large matrices (up to 10000×10000) with controlled spectra
-- Real: 20 Newsgroups (11314×~130000 TF-IDF matrix, as used in the paper)
-"""
 
 import numpy as np
 import matplotlib.pyplot as plt
